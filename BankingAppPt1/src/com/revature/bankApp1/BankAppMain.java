@@ -8,7 +8,8 @@ public class BankAppMain {
 	static String username;
 	static String password;
 	public static void main(String[] args) {
-		Login log = new Login();
+		User user = new User();
+		Login log = new Login(user);
 		boolean x = false;
 		while(x==false) {
 			System.out.println("Admin Login:\t\tEnter: \"admin\"");
@@ -20,7 +21,7 @@ public class BankAppMain {
 			String choice = myScanner.nextLine();
 			switch(choice) {
 				case "admin":
-					Admin admin = new Admin();
+					Admin admin = new Admin(user);
 					while(admin.check==false) {
 						System.out.println("Enter username: ");
 						username = myScanner.nextLine().trim();
@@ -57,8 +58,12 @@ public class BankAppMain {
 						password = myScanner.nextLine().trim();
 						cLog.check = log.login(username, password, cLog);
 						System.out.println();
+						if(cLog.check==true) {
+							cLog.prompt(log.loginCredentials(cLog.check));
+							break;
+						}
 					}
-					cLog.prompt();
+					myScanner.close();
 					x=true;
 					break;
 					
@@ -80,7 +85,7 @@ public class BankAppMain {
 					password = myScanner.nextLine();
 					myScanner.close();
 					Customer cNewAcct = new Customer(name, age, address, username, password);
-					cNewAcct.newAccount(cNewAcct.getUsername(), cNewAcct.getPassword(), cNewAcct);
+					cNewAcct.newAccount(cNewAcct);
 					x=true;
 					break;
 				
