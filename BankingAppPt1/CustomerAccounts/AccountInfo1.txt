@@ -1,3 +1,0 @@
-Name: asdas asdasda
-Age: 123
-Address: asd,asd,asdad

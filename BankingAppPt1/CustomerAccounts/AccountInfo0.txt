@@ -1,3 +1,0 @@
-Name: asd asdasda
-Age: 45
-Address: asd,asd,asd
